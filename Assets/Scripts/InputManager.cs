@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //jump
+            //send signal to player to trigger jump, instead of letting player pick this up
         }
 
         if (Input.GetKeyDown(KeyCode.P))

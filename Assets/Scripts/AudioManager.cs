@@ -28,3 +28,6 @@ public class AudioManager : MonoBehaviour
     }
 
 }
+
+//would not work with multiple sounds, make the audiosource on whatever makes it. 
+//doesnt need to be a singleton. but you could have one for background music.

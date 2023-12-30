@@ -6,18 +6,24 @@ using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
-    [SerializeField] private TMP_Text gameTitle;
-    [SerializeField] private Button startButton;
+    private string playerName;
+    [SerializeField] private GameObject nameInputField;
+    [SerializeField] private Button enterButton;
+    [SerializeField] private TMP_Text displayText;
 
     private void Start()
     {
-        gameTitle.SetText("Howdy!");
-        startButton.onClick.AddListener(StartGame);
+        enterButton.onClick.AddListener(SaveName);
     }
 
-    private void StartGame()
+    private void SaveName()
     {
-        GameManager.gameManager.triggerGameStart();
+        playerName = nameInputField.GetComponent<TMP_InputField>().text;
+        UpdateNameDisplay();
     }
 
+    private void UpdateNameDisplay()
+    {
+        displayText.SetText("Name: " + playerName);
+    }
 }

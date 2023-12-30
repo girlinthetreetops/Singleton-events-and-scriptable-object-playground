@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+//cumbersome, can be shortened.
+//consider other types of events if you absolutely need it.
 
 public class UIManager : MonoBehaviour
 {
@@ -13,41 +17,37 @@ public class UIManager : MonoBehaviour
     {
         startScreen.SetActive(true);
 
-        GameManager.gameManager.OnGameOpened.AddListener(ActivateStartScreen);
+        GameManager.gameManager.OnGameOpened.AddListener(ActivatePauseScreen);
         GameManager.gameManager.OnGameStarted.AddListener(ActivateTopBar);
         GameManager.gameManager.OnGamePause.AddListener(ActivatePauseScreen);
         GameManager.gameManager.OnGameOver.AddListener(ActivateGameOverScreen);
     }
 
-    private void ActivateStartScreen()
+    public void SetUI(bool activeStartScreen, bool activeTopBar, bool activeGameOverScreen, bool activePauseScreen)
     {
-        startScreen.SetActive(true);
-        topBar.SetActive(false);
-        pauseScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
+        startScreen.SetActive(activeStartScreen);
+        topBar.SetActive(activeTopBar);
+        pauseScreen.SetActive(activePauseScreen);
+        gameOverScreen.SetActive(activeGameOverScreen);
+    }
+
+    private void ActivateStartScreen(int i, int y)
+    {
+        SetUI(true, false, false, false);
     }
 
     private void ActivatePauseScreen()
     {
-        startScreen.SetActive(false);
-        topBar.SetActive(false);
-        pauseScreen.SetActive(true);
-        gameOverScreen.SetActive(false);
+        SetUI(false, false, false, true);
     }
 
     private void ActivateTopBar()
     {
-        startScreen.SetActive(false);
-        topBar.SetActive(true);
-        pauseScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
+        SetUI(false, true, false, false);
     }
 
     private void ActivateGameOverScreen()
     {
-        startScreen.SetActive(false);
-        topBar.SetActive(false);
-        pauseScreen.SetActive(false);
-        gameOverScreen.SetActive(true);
+        SetUI(false, false, true, false);
     }
 }

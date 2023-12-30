@@ -29,5 +29,4 @@ public class SpawnManager : MonoBehaviour
     {
         Instantiate(obstaclePrefab, spawnPosition);
     }
-
 }
